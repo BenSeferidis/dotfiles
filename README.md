@@ -1,4 +1,4 @@
-# This is my dotfiles
+# Those are my Dotfiles
 
 ## Is use Arch BTW :)
 
