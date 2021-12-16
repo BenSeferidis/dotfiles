@@ -1,0 +1,26 @@
+[global_config]
+  borderless = True
+[keybindings]
+  split_horiz = <Alt>h
+  split_vert = <Alt>v
+  close_term = <Alt>w
+[profiles]
+  [[default]]
+    icon_bell = False
+    background_darkness = 0.9
+    background_type = image
+    cursor_color = "#aaaaaa"
+    show_titlebar = False
+    scrollbar_position = hidden
+    scroll_on_keystroke = False
+    scrollback_infinite = True
+    background_image = /home/fanky/wallpapers/2122627.png
+[layouts]
+  [[default]]
+    [[[window0]]]
+      type = Window
+      parent = ""
+    [[[child1]]]
+      type = Terminal
+      parent = window0
+[plugins]
