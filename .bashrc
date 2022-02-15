@@ -12,10 +12,10 @@ PS1='\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
 
 # Aliases
 
+alias grep='grep --color'
 alias ls='ls --color=auto'
 alias up='python3 -m http.server'
 alias untar='tar -zxvf '
-alias ip='iconfig getifaddr tun0'
 alias c='clear'
 alias ll='ls -l --color=auto'
 alias q='exit'
@@ -38,3 +38,5 @@ alias pwnstrip='pwn pwnstrip'
 alias scramble='pwn scramble'
 alias shellcraft='pwn shellcraft'
 alias unhex='pwn unhex'
+
+eval "$(starship init bash)"

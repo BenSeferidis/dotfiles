@@ -1,20 +1,18 @@
 [global_config]
   borderless = True
+  title_use_system_font = False
+  title_font = Source Code Variable Heavy 9
 [keybindings]
   split_horiz = <Alt>h
   split_vert = <Alt>v
   close_term = <Alt>w
 [profiles]
   [[default]]
-    icon_bell = False
-    background_darkness = 0.9
-    background_type = image
+    background_darkness = 0.85
+    background_type = transparent
+    cursor_shape = ibeam
     cursor_color = "#aaaaaa"
     show_titlebar = False
-    scrollbar_position = hidden
-    scroll_on_keystroke = False
-    scrollback_infinite = True
-    background_image = /home/fanky/wallpapers/2122627.png
 [layouts]
   [[default]]
     [[[window0]]]
