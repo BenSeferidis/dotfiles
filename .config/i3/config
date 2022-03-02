@@ -208,60 +208,62 @@ hide_edge_borders both
 
 
 for_window [class=".*"] border pixel 2 #*
-gaps inner 10
+gaps inner 5
 gaps outer 1
-gaps horizontal 4
-
-
-
+gaps horizontal 5
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
-bar {
-        status_command i3blocks -c ~/.config/i3/i3blocks.conf 
-        font pango:Source Code Pro Bold 12
-        separator_symbol "/"
-        height 28
-
-	colors {
-		separator  #1f222d
-                background #2e3440
-                statusline #81a1c1
+#bar {
+#        status_command i3blocks -c /home/fanky/.config/i3/i3blocks.conf 
+#        font pango:Source Code Pro Bold 12
+#        separator_symbol "/"
+#        height 28
+#
+#	colors {
+#		separator  #1f222d
+ #               background #2e3440
+  #              statusline #81a1c1
 
                 #                   border  background text
-                focused_workspace  #1f222d #1f222d    #81a1c1
-                active_workspace   #1f222d #252936    #5e81ac
-                inactive_workspace #1f222d #1f222d    #4c566a
-                urgent_workspace   #1f222d #1f222d    #ee829f
-                binding_mode       #1f222d #81a1c1    #2e3440
-    }
-	position top
-}
-
+#                focused_workspace  #1f222d #1f222d    #81a1c1
+ #               active_workspace   #1f222d #252936    #5e81ac
+  #              inactive_workspace #1f222d #1f222d    #4c566a
+   #             urgent_workspace   #1f222d #1f222d    #ee829f
+    #            binding_mode       #1f222d #81a1c1    #2e3440
+#    }
+	#position top
+#}
+exec_always --no-startup-id ~/.config/polybar/launch.sh
 focus_follows_mouse no
 
 bindsym $mod+m bar mode toggle
+
+# Function keys
+exec_always echo 2 > sudo tee /sys/module/hid_apple/parameters/fnmode
+
+
 
 bindsym $mod+b exec firefox
 bindsym $mod+shift+x exec i3lock --color "$bg-color"
 bindsym Print exec flameshot gui
 bindsym $mod+d exec rofi -modi drun -show drun -config ~/.config/rofi/rofidmenu.rasi
-exec --no-startup-id "setxkbmap -model pc105 -layout us,gr -option grp:alt_shift_toggle"
+exec_always --no-startup-id "setxkbmap -model pc105 -layout us,gr -option grp:alt_shift_toggle"
 exec_always compton --config ~/.config/compton/compton.conf -f -i 10
-
-
-
+#exec_always compton --backend glx --blur-method kawase  --blur-background --blur-strength 20
 # Startup
 
+exec_always --no-startup-id killall dunst;/usr/bin/dunst
 
 exec --no-startup-id firefox
 exec --no-startup-id terminator
 exec --no-startup-id discord
 exec --no-startup-id flameshot
 exec --no-startup-id xset led 3
+exec --no-startup-id xset -dpms && xset s off
 
 # Wallpaper
-exec_always feh --bg-scale ~/wallpapers/wallhaven-ymo5p7.jpg
+exec_always feh --bg-scale /home/fanky/wallpapers/wallhaven-ymo5p7.jpg
 
 # Monitor orientation
 
@@ -277,8 +279,7 @@ assign [class="Chromium-browser"] $ws1
 assign [class="Alacritty"] $ws2
 assign [class="Terminator"] $ws2
 assign [class="Subl"] $ws3
+assign [class="Code"] $ws3
 assign [class="Spotify"] $ws4
 assign [class="discord"] $ws5
 assign [class="install4j-burp-StartBurp"] $ws7
-
-bindsym Scroll_Lock exec ~/.config/i3/scripts/scrlk.sh
