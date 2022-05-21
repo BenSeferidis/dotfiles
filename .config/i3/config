@@ -45,7 +45,7 @@ bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOU
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec terminator 
+bindsym $mod+Return exec kitty 
 
 # kill focused window
 bindsym $mod+w kill
@@ -116,8 +116,8 @@ set $ws5 "5: "
 set $ws6 "6: "
 set $ws7 "7: "
 set $ws8 "8: "
-set $ws9 "9"
-set $ws10 "10"
+set $ws9 "9: "
+set $ws10 "10: "
 
 # switch to workspace
 bindsym $mod+1 workspace $ws1
@@ -190,22 +190,6 @@ set $darkgrey #2e3440
 set $purple     #b48ead
 set $yellowbrown #ebcb8b
 
-# window colors
-#                       border              background         text                 indicator
-client.focused          $bg-color           $bg-color          $text-color          #00ff00
-client.unfocused        $inactive-bg-color  $inactive-bg-color $inactive-text-color #00ff00
-client.focused_inactive $inactive-bg-color  $inactive-bg-color $inactive-text-color #00ff00
-client.urgent           $urgent-bg-color    $urgent-bg-color   $text-color          #00ff00
-# NORD COLORSCHEME
-client.focused          #81a1c1 #81a1c1 #ffffff #81a1c1
-client.unfocused        #2e3440 #1f222d #888888 #1f222d
-client.focused_inactive #2e3440 #1f222d #888888 #1f222d
-client.placeholder      #2e3440 #1f222d #888888 #1f222d
-client.urgent           #900000 #900000 #ffffff #900000
-client.background       #242424
-
-hide_edge_borders both
-
 
 for_window [class=".*"] border pixel 2 #*
 gaps inner 5
@@ -240,14 +224,13 @@ focus_follows_mouse no
 bindsym $mod+m bar mode toggle
 
 # Function keys
-exec_always echo 2 > sudo tee /sys/module/hid_apple/parameters/fnmode
+exec_always echo 2 | sudo tee /sys/module/hid_apple/parameters/fnmode 
 
 
-
-bindsym $mod+b exec firefox
 bindsym $mod+shift+x exec i3lock --color "$bg-color"
 bindsym Print exec flameshot gui
 bindsym $mod+d exec rofi -modi drun -show drun -config ~/.config/rofi/rofidmenu.rasi
+
 exec_always --no-startup-id "setxkbmap -model pc105 -layout us,gr -option grp:alt_shift_toggle"
 exec_always compton --config ~/.config/compton/compton.conf -f -i 10
 #exec_always compton --backend glx --blur-method kawase  --blur-background --blur-strength 20
@@ -256,21 +239,17 @@ exec_always compton --config ~/.config/compton/compton.conf -f -i 10
 exec_always --no-startup-id killall dunst;/usr/bin/dunst
 
 exec --no-startup-id firefox
-exec --no-startup-id terminator
+exec --no-startup-id kitty
 exec --no-startup-id discord
 exec --no-startup-id flameshot
 exec --no-startup-id xset led 3
 exec --no-startup-id xset -dpms && xset s off
 
 # Wallpaper
-exec_always feh --bg-scale /home/fanky/wallpapers/wallhaven-ymo5p7.jpg
+exec_always feh --bg-scale ~/wallpapers/wallhaven-3z8eov.jpg
 
 # Monitor orientation
-
-exec_always xrandr --output DP-0 --off --output DP-1 --off --output DP-2 --primary --mode 1920x1080 --rate 144.00 --pos 0x0 --rotate normal --output DP-3 --off --output HDMI-0 --rate 144.00 --mode 1920x1080 --pos 1920x0 --rotate normal --output DP-4 --off --output DP-5 --off
-
-# Scrlk
-#exec_always xmodmap -e 'add mod3 = Scroll_Lock'
+# exec_always xrandr --output DP-0 --primary --mode 1920x1080 --pos 1920x0 --rotate normal --output DP-1 --off --output DP-2 --off --output DP-3 --off --output HDMI-0 --mode 1920x1080 --pos 0x0 --rotate normal --output DP-4 --off --output DP-5 --off
 
 assign [class="firefox"] $ws1
 assign [class="Brave-browser"] $ws1
@@ -278,8 +257,48 @@ assign [class="Chromium"] $ws1
 assign [class="Chromium-browser"] $ws1
 assign [class="Alacritty"] $ws2
 assign [class="Terminator"] $ws2
+assign [class="kitty"] $ws2
 assign [class="Subl"] $ws3
 assign [class="Code"] $ws3
 assign [class="Spotify"] $ws4
 assign [class="discord"] $ws5
-assign [class="install4j-burp-StartBurp"] $ws7
+assign [class="notion-app"] $ws6
+assign [class="burp-StartBurp"] $ws7
+assign [class="Mailspring"] $ws8
+
+# Set colors from Xresources
+# Change 'color7' and 'color2' to whatever colors you want i3 to use
+# from the generated scheme.
+# NOTE: The '#f0f0f0' in the lines below is the color i3 will use if
+# it fails to get colors from Xresources.
+set_from_resource $fg i3wm.color7 #f0f0f0
+set_from_resource $bg i3wm.color2 #f0f0f0
+
+set $bgcolor    #2e344090
+set $darkbluetrans #81a1c1e6
+set $darkblue   #81a1c1
+set $lightblue  #5e81ac
+set $urgentred  #8fbcbb
+set $white      #d8dee9
+set $black      #2e3440
+set $grey       #67738a
+set $mediumgrey #434C5E
+set $darkgrey #2e3440
+set $purple     #b48ead
+set $yellowbrown #ebcb8b
+
+# window colors
+#                       border              background         text                 indicator
+client.focused          $bg-color           $bg-color          $text-color          #00ff00
+client.unfocused        $inactive-bg-color  $inactive-bg-color $inactive-text-color #00ff00
+client.focused_inactive $inactive-bg-color  $inactive-bg-color $inactive-text-color #00ff00
+client.urgent           $urgent-bg-color    $urgent-bg-color   $text-color          #00ff00
+# NORD COLORSCHEME
+client.focused          #81a1c1 #81a1c1 #ffffff #81a1c1
+client.unfocused        #2e3440 #1f222d #888888 #1f222d
+client.focused_inactive #2e3440 #1f222d #888888 #1f222d
+client.placeholder      #2e3440 #1f222d #888888 #1f222d
+client.urgent           #900000 #900000 #ffffff #900000
+client.background       #242424
+
+hide_edge_borders both

@@ -7,7 +7,7 @@
 killall -q polybar
 
 # Wait until the processes have been shut down
-#while pgrep -u $UID -x polybar >/dev/null; do sleep 1; done
+while pgrep -x polybar >/dev/null; do sleep 1; done
 
 # Ensure all hideIt instances stop
 #ps -elf | grep "hideIt.sh" | grep -v "grep" | awk '{ print $4 }' | while read pid; do
@@ -16,10 +16,10 @@ killall -q polybar
 
 if type "xrandr"; then
   for m in $(xrandr --query | grep " connected" | cut -d" " -f1); do
-    MONITOR=$m polybar --reload bottom 2>~/.config/polybar/polybar.log &
+    MONITOR=$m polybar --reload example 2>~/.config/polybar/polybar.log &
   done
 else
-  polybar --reload bottom 2>~/.config/polybar/polybar.log &
+  polybar --reload example 2>~/.config/polybar/polybar.log &
 fi
 
 # Launch Polybar, using default config location ~/.config/polybar/config
@@ -32,3 +32,4 @@ fi
 
 # Start hideIt.sh to manage polybar visibility
 #$HOME/.dotfiles/scripts/hideIt.sh/hideIt.sh -N '^polybar-bottom_.*$' -S -d bottom -w
+#!/usr/bin/env sh
