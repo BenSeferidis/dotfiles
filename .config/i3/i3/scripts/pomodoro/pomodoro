@@ -1,3 +1,0 @@
-#!/bin/sh
-
-python $SCRIPT_DIR/pomodoro/pomodoro.py
