@@ -1,5 +1,5 @@
 var r = new XMLHttpRequest();
-r.open("GET", "http://challenge:8080/", true); 
+r.open("GET", "http://127.0.0.1:8080/", true); 
 r.onreadystatechange = function() { 
     if (r.readyState == 4){
         var res = r.response.split('\'s Profile')[0].split('<h1>')[1].replace(/\s/g, '');
